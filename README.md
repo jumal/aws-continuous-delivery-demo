@@ -17,9 +17,9 @@ This demo uses
  - **AWS CodeDeploy** for deployments
  - **AWS ECS** for Docker support
 
-The setup is performed using AWS CLI to ensure full reproducability
-
 ## Setup
+
+The setup is performed using AWS CLI to ensure full reproducibility
 
 ### Install AWS CLI
 Follow the instructions for your OS on [this page](http://aws.amazon.com/cli).
