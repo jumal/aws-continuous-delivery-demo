@@ -1,0 +1,35 @@
+{
+  "restaurant": [
+    {
+      "_class": "org.jumaland.Restaurant",
+      "name": "Vella",
+      "address": {
+        "street": "2 Avenue",
+        "zipcode": "10075",
+        "building": "1480",
+        "coord": [
+          -73.9557413,
+          40.7720266
+        ]
+      },
+      "borough": "Manhattan",
+      "cuisine": "French",
+      "grades": [
+        {
+          "grade": "A",
+          "score": 11,
+          "date": {
+            "$date": "2014-09-30T23:00:00.000Z"
+          }
+        },
+        {
+          "grade": "B",
+          "score": 17,
+          "date": {
+            "$date": "2014-01-16T00:00:00.000Z"
+          }
+        }
+      ]
+    }
+  ]
+}
