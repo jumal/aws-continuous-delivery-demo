@@ -22,7 +22,20 @@ This demo uses
 The setup is performed using AWS CLI to ensure full reproducibility
 
 ### Install AWS CLI
+
+#### Install
+
 Follow the instructions for your OS on [this page](http://aws.amazon.com/cli).
+
+On MacOs:
+```
+brew install awscli
+```
+
+#### Configure
+```
+aws configure
+```
 
 *Work in progress*
 
