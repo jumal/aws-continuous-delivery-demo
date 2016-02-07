@@ -1,5 +1,4 @@
 # AWS Continuous Delivery Demo
-[![Build Status](https://travis-ci.org/jumal/aws-continuous-delivery-demo.svg?branch=master)](https://travis-ci.org/jumal/aws-continuous-delivery-demo)
 
 Continuous delivery demo using Amazon Web Services
  - Automatically **build** on commit and **run unit tests**
