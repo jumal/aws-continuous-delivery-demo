@@ -40,7 +40,7 @@ brew install awscli
 ```
 aws configure
 ```
-Use `us-east-1` or `us-west-1` as default region as others are not yet supported
+Use `us-east-1`, `us-west-1` or `us-west-2` as default region (other regions are not yet supported)
 
 Use `json` as default output format
 
