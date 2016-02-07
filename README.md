@@ -21,7 +21,11 @@ This demo uses
 
 The setup is performed using AWS CLI to ensure full reproducibility
 
-### Install AWS CLI
+### Create an IAM User
+
+Create an IAM user having the `AWSCodePipelineFullAccess` managed policy.
+
+### Install and Configure AWS CLI
 
 #### Install
 
@@ -36,6 +40,10 @@ brew install awscli
 ```
 aws configure
 ```
+Use `us-east-1` or `us-west-1` as default region as others are not yet supported
+
+Use `json` as default output format
+
 
 *Work in progress*
 
