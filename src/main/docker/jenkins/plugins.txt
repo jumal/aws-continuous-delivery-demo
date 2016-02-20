@@ -1,0 +1,2 @@
+job-dsl:latest
+aws-codepipeline:latest
