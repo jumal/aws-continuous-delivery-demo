@@ -8,7 +8,11 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 COPY users.groovy /usr/share/jenkins/ref/init.groovy.d
 
 # Create jobs
-COPY jobs.groovy /usr/share/jenkins/ref/init.groovy.d
+COPY seed.groovy /usr/share/jenkins/ref/init.groovy.d
+COPY seed.xml jobs.groovy /tmp/seed/
+USER root
+RUN chown -R jenkins:jenkins /tmp/seed
+USER jenkins
 
 # Configure HTTPS
 #COPY https.pem /var/lib/jenkins/cert
