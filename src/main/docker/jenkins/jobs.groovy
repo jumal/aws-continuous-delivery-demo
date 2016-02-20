@@ -3,10 +3,14 @@ job("${project}") {
     triggers {
         scm('H/5 * * * *')
     }
+    steps {
+        shell('mvn clean package')
+    }
+    logRotator(-1, 5)
     concurrentBuild()
     configure {
-        (it / scm).attributes['class'] = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
-//        (it / scm).attributes['plugin'] = 'aws-codepipeline@0.11'
+        // for playground, use (it / scm).attributes['class'] = ...
+        (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
@@ -20,11 +24,7 @@ job("${project}") {
             proxyPort '0'
             awsClientFactory ''
         }
-        it / builders << 'hudson.tasks.Shell' {
-            command 'mvn clean package'
-        }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-//            it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' (plugin:"aws-codepipeline@0.11") {
             buildOutputs ''
             awsClientFactory ''
         }
