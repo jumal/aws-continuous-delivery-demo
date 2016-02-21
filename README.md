@@ -19,13 +19,7 @@ This demo uses
 
 ## Setup
 
-The setup is performed using AWS CLI to ensure full reproducibility
-
-### Create an IAM User
-
-Create an IAM user having the `AWSCodePipelineFullAccess` managed policy.
-
-### Install and Configure AWS CLI
+### AWS CLI
 
 #### Install
 
@@ -44,9 +38,31 @@ Use `us-east-1`, `us-west-1` or `us-west-2` as default region (other regions are
 
 Use `json` as default output format
 
+### Amazon ECS CLI
 
-*Work in progress*
+#### Install
+
+Follow the instructions for your OS on [this page](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html).
+
+On MacOs:
+```
+sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest
+sudo chmod +x /usr/local/bin/ecs-cli
+```
+
+#### Configure
+```
+ecs-cli configure --region *region*
+```
+Use the `us-east-1`, `us-west-1` or `us-west-2` as region (other regions are not yet supported)
 
 ## Usage
+```
+./create.sh
+```
+## Cleanup
+```
+./delete.sh
+```
 
 *Work in progress*
