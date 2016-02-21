@@ -52,11 +52,9 @@ sudo chmod +x /usr/local/bin/ecs-cli
 
 #### Configure
 ```
-aws configure
+ecs-cli configure --region *region*
 ```
-Use `us-east-1`, `us-west-1` or `us-west-2` as default region (other regions are not yet supported)
-
-Use `json` as default output format
+Use the `us-east-1`, `us-west-1` or `us-west-2` as region (other regions are not yet supported)
 
 ## Usage
 ```
