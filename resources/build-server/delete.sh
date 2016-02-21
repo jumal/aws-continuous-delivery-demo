@@ -1,4 +1,5 @@
 #!/bin/bash
 
-image/delete.sh
-server/delete.sh
+DIRECTORY=$(cd ${0%/*} && echo $PWD)
+$DIRECTORY/image/delete.sh
+$DIRECTORY/server/delete.sh

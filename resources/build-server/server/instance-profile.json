@@ -45,13 +45,13 @@
       }
     },
     "InstanceProfile": {
-      "Description": "Name if instance-profile for Jenkins and application instances",
+      "Description": "Build server instance profile",
       "Value": {
         "Ref": "InstanceProfile"
       }
     },
     "InstanceRole": {
-      "Description": "IAM Role for Jenkins and application instance profile",
+      "Description": "Ruild server instance role",
       "Value": {
         "Ref": "InstanceRole"
       }

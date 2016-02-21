@@ -1,4 +1,5 @@
 #!/bin/bash
+DIRECTORY=$(cd ${0%/*} && echo $PWD)
 
-resources/create.sh
-pipeline/create.sh
+$DIRECTORY/resources/create.sh
+$DIRECTORY/pipeline/create.sh

@@ -1,4 +1,4 @@
 #!/bin/bash
 
-resources/delete.sh
-pipeline/delete.sh
+aws ecr delete-repository --repository-name build-server --force
+

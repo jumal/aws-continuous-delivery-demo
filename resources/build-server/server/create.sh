@@ -1,13 +1,9 @@
 #!/bin/bash
+DIRECTORY=$(cd ${0%/*} && echo $PWD)
 
 # Create instance profile
-aws cloudformation create-stack --stack-name build-server-instance-profile --template-body file://instance-profile.json --capabilities CAPABILITY_IAM
+aws cloudformation create-stack --stack-name build-server-instance-profile --template-body file://$DIRECTORY/instance-profile.json --capabilities CAPABILITY_IAM
 
 # Create service
-
-#aws iam create-role --role-name ec2-access-codepipeline --assume-role-policy-document file://trust-policy.json
-#aws iam attach-role-policy --role-name ec2-access-codepipeline --policy-arn arn:aws:iam::aws:policy/AWSCodePipelineCustomActionAccess
-#aws iam create-instance-profile --instance-profile-name ec2-access-codepipeline
-#aws iam add-role-to-instance-profile --instance-profile-name ec2-access-codepipeline --role-name ec2-access-codepipeline
-#INSTANCE_PROFILE_ARN=`aws iam get-instance-profile --instance-profile-name ec2-access-codepipeline --query "InstanceProfile.Arn" --output text`
-
+ecs-cli up  --instance-type t2.micro --size 1 --keypair jumal --capability-iam
+ecs-cli compose service up
