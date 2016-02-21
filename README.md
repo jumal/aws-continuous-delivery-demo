@@ -42,11 +42,12 @@ Use `json` as default output format
 
 #### Install
 
-Follow the instructions for your OS on [this page](http://aws.amazon.com/cli).
+Follow the instructions for your OS on [this page](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html).
 
 On MacOs:
 ```
-brew install awscli
+sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest
+sudo chmod +x /usr/local/bin/ecs-cli
 ```
 
 #### Configure
