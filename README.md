@@ -34,8 +34,6 @@ brew install awscli
 ```
 aws configure
 ```
-Use `us-east-1`, `us-west-1` or `us-west-2` as default region (other regions are not yet supported)
-
 Use `json` as default output format
 
 ### Amazon ECS CLI
@@ -52,9 +50,8 @@ sudo chmod +x /usr/local/bin/ecs-cli
 
 #### Configure
 ```
-ecs-cli configure --region *region*
+ecs-cli configure --region [region] --cluster cd-demo
 ```
-Use the `us-east-1`, `us-west-1` or `us-west-2` as region (other regions are not yet supported)
 
 ## Usage
 ```
