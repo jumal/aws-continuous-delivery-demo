@@ -1,5 +1,5 @@
 #!/bin/bash
+set -e
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
-
-$DIRECTORY/resources/create.sh
+$DIRECTORY/servers/create.sh
 $DIRECTORY/pipeline/create.sh

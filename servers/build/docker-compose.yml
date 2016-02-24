@@ -1,0 +1,4 @@
+web:
+  image: 923443904807.dkr.ecr.us-east-1.amazonaws.com/build-server:1.0
+  ports:
+   - "80:8080"

@@ -1,4 +1,0 @@
-web:
-  image: build-server
-  ports:
-   - "8080"
