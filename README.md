@@ -2,15 +2,11 @@
 
 Continuous delivery demo using Amazon Web Services
  - Automatically **build** on commit and **run unit tests**
- - Automatically **deploy** and **run integration tests**
  - Automatically **deploy to QA environment**
- - Allow to **deploy** and **perform load testing**
- - Automatically **deploy to staging environment**
  - Allow to **deploy to production environment**
 
 This demo uses
  - **AWS CodePipeline** for orchestration
- - **GitHub** for source version control 
  - **Docker** for immutable infrastructure support
  - **Jenkins** for continuous integration
  - **AWS CloudFormation** for provisioning
@@ -19,28 +15,27 @@ This demo uses
 
 ## Setup
 
-### AWS CLI
+The setup is performed using Amazon command line tools to ensure full reproducability.
 
-#### Install
+### Amazon Command Line Tools
 
-Follow the instructions for your OS on [this page](http://aws.amazon.com/cli).
+#### AWS CLI
+
+To install AWS CLI, follow the instructions for your OS on [this page](http://aws.amazon.com/cli).
 
 On MacOs:
 ```
 brew install awscli
 ```
-
-#### Configure
+To configure AWS CLI:
 ```
 aws configure
 ```
 Use `json` as default output format
 
-### Amazon ECS CLI
+#### Amazon ECS CLI
 
-#### Install
-
-Follow the instructions for your OS on [this page](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html).
+To install Amazon ECS CLI, follow the instructions for your OS on [this page](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_CLI_installation.html).
 
 On MacOs:
 ```
@@ -48,18 +43,16 @@ sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-
 sudo chmod +x /usr/local/bin/ecs-cli
 ```
 
-#### Configure
-```
-ecs-cli configure --region [region] --cluster cd-demo
-```
-
-## Usage
+### Continuous Delivery Pipeline & Servers
 ```
 ./create.sh
 ```
+
+## Usage
+
+To access AWS CodePipeline, point your browser to *Work in progress*
+
 ## Cleanup
 ```
 ./delete.sh
 ```
-
-*Work in progress*
