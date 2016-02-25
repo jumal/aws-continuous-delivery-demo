@@ -4,7 +4,7 @@ job("${project}") {
         scm('H/5 * * * *')
     }
     steps {
-        shell('mvn clean package')
+        maven('clean package')
     }
     logRotator(-1, 5)
     concurrentBuild()

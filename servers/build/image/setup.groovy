@@ -21,3 +21,10 @@ def workspace = new File('/var/jenkins_home/workspace/seed')
 workspace.mkdirs()
 new File(workspace, 'jobs.groovy').bytes = new File(source, 'jobs.groovy').bytes
 source.deleteDir()
+
+// Install maven
+def mavenPluginExtension = Jenkins.instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0]
+def asList = (mavenPluginExtension.installations as List)
+asList.add(new hudson.tasks.Maven.MavenInstallation('(Default)', null, [new hudson.tools.InstallSourceProperty([new hudson.tasks.Maven.MavenInstaller("3.3.9")])]))
+mavenPluginExtension.installations = asList
+mavenPluginExtension.save()

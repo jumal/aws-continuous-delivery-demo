@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$#" -ne 1 ]; then
-    echo "Usage: role.sh SERVER"
+    echo "Usage: get-role.sh SERVER"
     exit 1
 fi
 set -e

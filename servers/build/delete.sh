@@ -7,3 +7,5 @@ aws iam detach-role-policy --role-name `$LIB/get-role.sh` --policy-arn arn:aws:i
 ecs-cli configure --region `$LIB/get-region.sh` --cluster build-server
 ecs-cli down --force
 $LIB/delete-key-pair.sh build-server
+
+$DIRECTORY/image/delete.sh
