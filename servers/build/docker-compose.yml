@@ -1,4 +1,4 @@
 web:
-  image: 923443904807.dkr.ecr.us-east-1.amazonaws.com/build-server:latest
+  image: REGISTRY/build-server:latest
   ports:
    - "80:8080"
