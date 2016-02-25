@@ -1,17 +1,19 @@
 # AWS Continuous Delivery Demo
 
 Continuous delivery demo using Amazon Web Services
- - Automatically **build** on commit and **run unit tests**
- - Automatically **deploy to QA environment**
- - Allow to **deploy to production environment**
 
-This demo uses
+This demo uses:
  - **AWS CodePipeline** for orchestration
  - **Docker** for immutable infrastructure support
  - **Jenkins** for continuous integration
  - **AWS CloudFormation** for provisioning
  - **AWS CodeDeploy** for deployments
  - **AWS ECS** for Docker support
+
+Sample pipeline:
+ - Automatically **build** on commit and **run unit tests**
+ - Automatically **deploy to QA environment**
+ - Allow to **deploy to production environment**
 
 ## Setup
 
