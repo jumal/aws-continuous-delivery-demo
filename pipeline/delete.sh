@@ -1,3 +1,2 @@
-#!/bin/bash
-set -e
+#!/bin/bash -e
 DIRECTORY=$(cd ${0%/*} && echo $PWD)

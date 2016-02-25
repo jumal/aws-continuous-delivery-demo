@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
 REGION=`$DIRECTORY/get-region.sh`
 
