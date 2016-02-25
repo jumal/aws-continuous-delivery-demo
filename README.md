@@ -15,7 +15,7 @@ This demo uses
 
 ## Setup
 
-The setup is performed using Amazon command line tools to ensure full reproducability.
+The setup is performed using Amazon command line tools to ensure full reproducibility.
 
 ### Amazon Command Line Tools
 
