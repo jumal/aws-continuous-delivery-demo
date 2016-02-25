@@ -2,7 +2,7 @@
 
 Continuous delivery demo using Amazon Web Services
 
-This demo uses
+This demo uses:
  - **AWS CodePipeline** for orchestration
  - **Docker** for immutable infrastructure support
  - **Jenkins** for continuous integration
