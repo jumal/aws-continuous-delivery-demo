@@ -45,6 +45,8 @@ On MacOs:
 sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest
 sudo chmod +x /usr/local/bin/ecs-cli
 ```
+### Docker
+To install Docker, follow the instructions for your OS on [this page](https://docs.docker.com/engine/installation).
 
 ### Continuous Delivery Pipeline & Servers
 ```
