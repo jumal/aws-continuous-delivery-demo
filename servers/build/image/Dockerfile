@@ -11,6 +11,10 @@ COPY setup.groovy /usr/share/jenkins/ref/init.groovy.d
 COPY seed.xml jobs.groovy /tmp/seed/
 USER root
 RUN chown -R jenkins:jenkins /tmp/seed
+
+# Docker
+#RUN wget https://get.docker.io/builds/Linux/x86_64/docker-latest -O /bin/docker && chmod +x /bin/docker && usermod -a -G users jenkins
+RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/* && usermod -a -G users jenkins
 USER jenkins
 
 # HTTPS
