@@ -8,7 +8,6 @@ This demo uses:
  - **Docker** for immutable infrastructure support
  - **Jenkins** for continuous integration
  - **AWS CloudFormation** for provisioning
- - **AWS CodeDeploy** for deployments
  - **AWS ECS** for Docker support
 
 Sample pipeline:
