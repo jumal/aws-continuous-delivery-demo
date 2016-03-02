@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 if [ "$#" -ne 1 ]; then
-    echo "Usage: get-ip.sh SERVER"
+    echo "Usage: get-ip.sh CLUSTER"
     exit 1
 fi
 INSTANCE_ID=` aws ecs list-container-instances --cluster $1 --query "containerInstanceArns" --output text | xargs aws ecs describe-container-instances --cluster $1 --query "containerInstances[].ec2InstanceId" --output text --container-instances`
