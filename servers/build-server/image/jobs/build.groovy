@@ -1,7 +1,7 @@
 def project = 'project-build'
 job("${project}") {
     triggers {
-        scm('* * * * *')
+        scm('H/5 * * * *')
     }
     steps {
         maven('clean package -DskipTests')

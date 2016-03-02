@@ -8,11 +8,9 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 COPY setup.groovy /usr/share/jenkins/ref/init.groovy.d
 
 # Jobs
-COPY seed.xml /tmp/seed/
-COPY jobs /tmp/seed/jobs
-COPY scripts /tmp/seed/scripts
+COPY jobs /tmp/jobs
 USER root
-RUN chown -R jenkins:jenkins /tmp/seed
+RUN chown -R jenkins:jenkins /tmp/jobs
 
 # Docker
 RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/* && groupadd -g 497 host-docker && usermod -a -G host-docker jenkins

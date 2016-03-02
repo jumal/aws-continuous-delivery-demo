@@ -16,7 +16,7 @@ instance.setAuthorizationStrategy(strategy)
 instance.save()
 
 // Create seed project
-def source = new File('/tmp/seed')
+def source = new File('/tmp/jobs')
 instance.createProjectFromXML('seed', new FileInputStream(source.getPath() + '/seed.xml'))
 new AntBuilder().copy(todir:'/var/jenkins_home/workspace/seed') {
     fileset(dir:source.getPath())
