@@ -1,10 +1,10 @@
-def project = 'project'
+def project = 'project-static-code-analysis'
 job("${project}") {
     triggers {
-        scm('H/5 * * * *')
+        scm('* * * * *')
     }
     steps {
-        maven('clean package')
+        maven('test')
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -13,8 +13,8 @@ job("${project}") {
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
-            actionTypeCategory 'Build'
-            actionTypeProvider "jenkins-${project}"
+            actionTypeCategory 'Test'
+            actionTypeProvider 'project-jenkins'
             actionTypeVersion '1'
             region 'us-east-1'
             awsAccessKey ''

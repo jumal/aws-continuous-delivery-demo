@@ -5,7 +5,9 @@ REGISTRY=`$LIB/get-registry.sh`
 REGION=`$LIB/get-region.sh`
 
 $LIB/aws-ecr.sh create-repository --repository-name build-server
-#sed -i '' -e "s/us-east-1/$REGION/g" $DIRECTORY/jobs.groovy
+#for job in $DIRECTORY/jobs/*; do
+#    sed -i '' -e "s/us-east-1/$REGION/g" $job
+#done
 docker build -t build-server $DIRECTORY
 docker tag build-server:latest $REGISTRY/build-server:latest
 docker push $REGISTRY/build-server:latest

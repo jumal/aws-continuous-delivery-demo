@@ -1,5 +1,6 @@
 import jenkins.model.*
 import hudson.security.*
+import java.nio.file.Files
 
 def instance = Jenkins.getInstance()
 
@@ -17,9 +18,9 @@ instance.save()
 // Create seed project
 def source = new File('/tmp/seed')
 instance.createProjectFromXML('seed', new FileInputStream(source.getPath() + '/seed.xml'))
-def workspace = new File('/var/jenkins_home/workspace/seed')
-workspace.mkdirs()
-new File(workspace, 'jobs.groovy').bytes = new File(source, 'jobs.groovy').bytes
+new AntBuilder().copy(todir:'/var/jenkins_home/workspace/seed') {
+    fileset(dir:source.getPath())
+}
 source.deleteDir()
 
 // Install maven
