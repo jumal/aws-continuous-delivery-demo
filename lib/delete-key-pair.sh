@@ -4,4 +4,4 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 aws ec2 delete-key-pair --key-name $1
-rm ~/.ssh/$1.pem
+rm -f ~/.ssh/$1.pem
