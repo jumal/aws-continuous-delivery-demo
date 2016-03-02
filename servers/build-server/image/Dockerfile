@@ -13,7 +13,7 @@ USER root
 RUN chown -R jenkins:jenkins /tmp/seed
 
 # Docker
-RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/* && usermod -a -G users jenkins
+RUN apt-get update && apt-get install -y docker.io && rm -rf /var/lib/apt/lists/* && groupadd -g 497 ecs-docker && usermod -a -G ecs-docker jenkins
 USER jenkins
 
 # HTTPS
