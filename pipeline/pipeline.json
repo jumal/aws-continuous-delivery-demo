@@ -16,7 +16,7 @@
             "Name": "Sources",
             "Actions": [
               {
-                "Name": "Sources",
+                "Name": "Update",
                 "ActionTypeId": {
                   "Category": "Source",
                   "Owner": "ThirdParty",
@@ -113,17 +113,27 @@
                   }
                 ],
                 "ActionTypeId": {
-                  "Category": "Test",
+                  "Category": "Build",
                   "Owner": "Custom",
                   "Version": "5",
                   "Provider": "project-jenkins"
                 },
                 "Configuration": {
                   "ProjectName": "package"
-                }
+                },
+                "OutputArtifacts": [
+                  {
+                    "Name": "package"
+                  }
+                ]
               },
               {
                 "Name": "Deploy",
+                "InputArtifacts": [
+                  {
+                    "Name": "package"
+                  }
+                ],
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
@@ -142,6 +152,11 @@
             "Actions": [
               {
                 "Name": "Deploy",
+                "InputArtifacts": [
+                  {
+                    "Name": "package"
+                  }
+                ],
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
@@ -153,6 +168,14 @@
                 }
               }
             ]
+          }
+        ],
+        "DisableInboundStageTransitions" : [
+          {
+            "pipelineName": "Project",
+            "stageName": "Production",
+            "transitionType": "Inbound",
+            "reason": "Manual transition to production"
           }
         ],
         "ArtifactStore": {

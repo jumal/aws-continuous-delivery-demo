@@ -2,7 +2,7 @@
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
 LIB=$DIRECTORY/../../../lib
 REGISTRY=`$LIB/get-registry.sh`
-REGION=`$LIB/get-region.sh`
+REGION=$(aws configure get region)
 
 $(aws --region us-east-1 ecr get-login)
 aws --region us-east-1 ecr create-repository --repository-name build-server

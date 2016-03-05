@@ -3,12 +3,7 @@ if [ "$#" -ne 1 ]; then
     echo "Usage: deploy.sh CLUSTER"
     exit 1
 fi
-LIB=../seed/scripts
-echo "Deploying to cluster $1"
-#REGISTRY=`$LIB/get-registry.sh`
-
-#ecs-cli configure --region `$LIB/get-region.sh` --cluster $CLUSTER
-#sed -i '' -e "s/REGISTRY/$REGISTRY/g" -e "s/TAG/$GIT_COMMIT/g" docker-compose.yml
-#ecs-cli compose --project-name $CLUSTER create
-#REVISION=`aws ecs describe-task-definition --task-definition ecscompose-$CLUSTER --query "taskDefinition.revision"`
-#aws ecs update-service --cluster $CLUSTER --service ecscompose-service-$CLUSTER --task-definition ecscompose-$CLUSTER:$REVISION
+#ecs-cli configure --region $(aws configure get region) --cluster $1
+#ecs-cli compose --project-name $1 create
+#REVISION=$(aws ecs describe-task-definition --task-definition ecscompose-$1 --query "taskDefinition.revision")
+#aws ecs update-service --cluster $1 --service ecscompose-service-$1 --task-definition ecscompose-$1:$REVISION

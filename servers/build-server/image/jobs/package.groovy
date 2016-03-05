@@ -13,7 +13,7 @@ job("${project}") {
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
-            actionTypeCategory 'Test'
+            actionTypeCategory 'Build'
             actionTypeProvider 'project-jenkins'
             actionTypeVersion '5'
             region 'us-east-1'
@@ -24,7 +24,11 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs ''
+            buildOutputs {
+                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
+                    outputString ''
+                }
+            }
             awsClientFactory ''
         }
     }
