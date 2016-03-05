@@ -4,7 +4,7 @@ LIB=$DIRECTORY/../../../lib
 REGISTRY=`$LIB/get-registry.sh`
 REGION=`$LIB/get-region.sh`
 
-$LIB/aws-ecr.sh create-repository --repository-name build-server
+aws --region us-east-1 ecr create-repository --repository-name build-server
 #for job in $DIRECTORY/jobs/*; do
 #    sed -i '' -e "s/us-east-1/$REGION/g" $job
 #done

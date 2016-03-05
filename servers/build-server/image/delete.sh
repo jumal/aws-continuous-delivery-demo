@@ -1,5 +1,2 @@
 #!/bin/bash -ex
-DIRECTORY=$(cd ${0%/*} && echo $PWD)
-LIB=$DIRECTORY/../../../lib
-
-$LIB/aws-ecr.sh delete-repository --repository-name build-server --force
+aws --region us-east-1 ecr delete-repository --repository-name build-server --force

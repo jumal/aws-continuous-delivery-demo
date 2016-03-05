@@ -1,12 +1,13 @@
 #!/bin/bash -ex
-if [ "$#" -ne 2 ]; then
-    echo "Usage: deploy.sh SERVER TAG"
+if [ "$#" -ne 1 ]; then
+    echo "Usage: deploy.sh CLUSTER"
     exit 1
 fi
-DIRECTORY=$(cd ${0%/*} && echo $PWD)
+LIB=../seed/scripts
+REGISTRY=`$LIB/get-registry.sh`
 
-$($$DIRECTORY/aws-ecr.sh get-login)
-docker push $($DIRECTORY/get-registry.sh)/$1:$2
-ecs-cli compose --file $DIRECTORY/$1/docker-compose.yml create
-REVISION=`aws ecs describe-task-definition --task-definition ecscompose-$1 --query "taskDefinition.revision"`
-aws ecs update-service --cluster $1 --service ecscompose-service-$1 --task-definition ecscompose-$1:$REVISION
+ecs-cli configure --region `$LIB/get-region.sh` --cluster $CLUSTER
+sed -i '' -e "s/REGISTRY/$REGISTRY/g" -e "s/TAG/$GIT_COMMIT/g" docker-compose.yml
+ecs-cli compose --project-name $CLUSTER create
+REVISION=`aws ecs describe-task-definition --task-definition ecscompose-$CLUSTER --query "taskDefinition.revision"`
+aws ecs update-service --cluster $CLUSTER --service ecscompose-service-$CLUSTER --task-definition ecscompose-$CLUSTER:$REVISION

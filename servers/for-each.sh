@@ -4,9 +4,8 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
-LIB=$DIRECTORY/../lib
 
-$($LIB/aws-ecr.sh get-login)
+$(aws --region us-east-1 ecr get-login)
 for server in $DIRECTORY/*/; do
     $server$1.sh
 done

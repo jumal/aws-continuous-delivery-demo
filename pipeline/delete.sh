@@ -1,2 +1,2 @@
-#!/bin/bash -e
-DIRECTORY=$(cd ${0%/*} && echo $PWD)
+#!/bin/bash -ex
+aws --region us-east-1 cloudformation delete-stack --stack-name project

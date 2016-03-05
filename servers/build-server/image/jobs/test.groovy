@@ -1,4 +1,4 @@
-def project = 'project-unit-test'
+def project = 'test'
 job("${project}") {
     triggers {
         scm('* * * * *')
@@ -15,7 +15,7 @@ job("${project}") {
             projectName "${project}"
             actionTypeCategory 'Test'
             actionTypeProvider 'project-jenkins'
-            actionTypeVersion '1'
+            actionTypeVersion '4'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''

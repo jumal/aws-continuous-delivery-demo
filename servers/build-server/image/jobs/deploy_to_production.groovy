@@ -1,10 +1,10 @@
-def project = 'project-deploy-to-production'
+def project = 'deploy-to-production'
 job("${project}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        shell('echo done')
+        shell(readFileFromWorkspace('seed', 'scripts/deploy-to-production.sh'))
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -15,7 +15,7 @@ job("${project}") {
             projectName "${project}"
             actionTypeCategory 'Test'
             actionTypeProvider 'project-jenkins'
-            actionTypeVersion '1'
+            actionTypeVersion '4'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''

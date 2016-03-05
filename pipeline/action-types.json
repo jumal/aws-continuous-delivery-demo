@@ -1,0 +1,108 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "buildServerURL": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "customBuildActionType": {
+      "Type": "AWS::CodePipeline::CustomActionType",
+      "Properties": {
+        "Provider": "project-jenkins",
+        "Category": "Build",
+        "Version":"4",
+        "ConfigurationProperties": [
+          {
+            "Name": "ProjectName",
+            "Queryable" : "true",
+            "Required": "true",
+            "Secret": "false",
+            "Key": "true"
+          }
+        ],
+        "InputArtifactDetails": {
+          "MinimumCount": "0",
+          "MaximumCount": "5"
+        },
+        "OutputArtifactDetails": {
+          "MinimumCount": "0",
+          "MaximumCount": "5"
+        },
+        "Settings": {
+          "EntityUrlTemplate": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Ref": "buildServerURL"
+                },
+                "/job/{Config:ProjectName}"
+              ]
+            ]
+          },
+          "ExecutionUrlTemplate": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Ref": "buildServerURL"
+                },
+                "/job/{Config:ProjectName}/{ExternalExecutionId}"
+              ]
+            ]
+          }
+        }
+      }
+    },
+    "customTestActionType": {
+      "Type": "AWS::CodePipeline::CustomActionType",
+      "Properties": {
+        "Provider": "project-jenkins",
+        "Category": "Test",
+        "Version":"4",
+        "ConfigurationProperties": [
+          {
+            "Name": "ProjectName",
+            "Queryable" : "true",
+            "Required": "true",
+            "Secret": "false",
+            "Key": "true"
+          }
+        ],
+        "InputArtifactDetails": {
+          "MinimumCount": "0",
+          "MaximumCount": "5"
+        },
+        "OutputArtifactDetails": {
+          "MinimumCount": "0",
+          "MaximumCount": "5"
+        },
+        "Settings": {
+          "EntityUrlTemplate": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Ref": "buildServerURL"
+                },
+                "/job/{Config:ProjectName}"
+              ]
+            ]
+          },
+          "ExecutionUrlTemplate": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Ref": "buildServerURL"
+                },
+                "/job/{Config:ProjectName}/{ExternalExecutionId}"
+              ]
+            ]
+          }
+        }
+      }
+    }
+  }
+}

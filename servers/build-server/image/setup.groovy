@@ -1,6 +1,5 @@
 import jenkins.model.*
 import hudson.security.*
-import java.nio.file.Files
 
 def instance = Jenkins.getInstance()
 

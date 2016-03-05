@@ -1,0 +1,145 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Parameters": {
+    "gitHubToken": {
+      "Type": "String",
+      "NoEcho": "true"
+    }
+  },
+  "Resources": {
+    "pipeline": {
+      "Type": "AWS::CodePipeline::Pipeline",
+      "Properties": {
+        "Stages": [
+          {
+            "Name": "Sources",
+            "Actions": [
+              {
+                "Name": "Sources",
+                "ActionTypeId": {
+                  "Category": "Source",
+                  "Owner": "ThirdParty",
+                  "Version": "1",
+                  "Provider": "GitHub"
+                },
+                "Configuration": {
+                  "Owner": "jumal",
+                  "Repo": "aws-continuous-delivery-demo-app",
+                  "Branch": "master",
+                  "OAuthToken": {
+                    "Ref": "gitHubToken"
+                  }
+                },
+                "OutputArtifacts": [
+                  {
+                    "Name": "sources"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Name": "Build",
+            "Actions": [
+              {
+                "Name": "Compile",
+                "InputArtifacts": [
+                  {
+                    "Name": "sources"
+                  }
+                ],
+                "ActionTypeId": {
+                  "Category": "Build",
+                  "Owner": "Custom",
+                  "Version": "4",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "compile"
+                },
+                "OutputArtifacts": [
+                  {
+                    "Name": "build"
+                  }
+                ]
+              },
+              {
+                "Name": "Test",
+                "InputArtifacts": [
+                  {
+                    "Name": "sources"
+                  }
+                ],
+                "ActionTypeId": {
+                  "Category": "Test",
+                  "Owner": "Custom",
+                  "Version": "4",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "test"
+                },
+                "RunOrder": 2
+              },
+              {
+                "Name": "Analyse",
+                "InputArtifacts": [
+                  {
+                    "Name": "sources"
+                  }
+                ],
+                "ActionTypeId": {
+                  "Category": "Test",
+                  "Owner": "Custom",
+                  "Version": "4",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "analyse"
+                },
+                "RunOrder": 3
+              }
+            ]
+          }
+        ],
+        "ArtifactStore": {
+          "Type": "S3",
+          "Location": {
+            "Ref": "artifactStore"
+          }
+        },
+        "RoleArn": {
+          "Fn::GetAtt": [
+            "role",
+            "Arn"
+          ]
+        }
+      }
+    },
+    "artifactStore": {
+      "Type": "AWS::S3::Bucket"
+    },
+    "role": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "codepipeline.amazonaws.com"
+                ]
+              },
+              "Action": "sts:AssumeRole"
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        ],
+        "Path": "/"
+      }
+    }
+  }
+}
