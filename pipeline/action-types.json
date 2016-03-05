@@ -10,8 +10,8 @@
       "Type": "AWS::CodePipeline::CustomActionType",
       "Properties": {
         "Provider": "project-jenkins",
+        "Version":"5",
         "Category": "Build",
-        "Version":"4",
         "ConfigurationProperties": [
           {
             "Name": "ProjectName",
@@ -59,8 +59,8 @@
       "Type": "AWS::CodePipeline::CustomActionType",
       "Properties": {
         "Provider": "project-jenkins",
+        "Version":"5",
         "Category": "Test",
-        "Version":"4",
         "ConfigurationProperties": [
           {
             "Name": "ProjectName",

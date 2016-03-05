@@ -5,7 +5,6 @@ if [ "$#" -ne 1 ]; then
 fi
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
 
-$(aws --region us-east-1 ecr get-login)
 for server in $DIRECTORY/*/; do
     $server$1.sh
 done

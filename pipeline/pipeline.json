@@ -10,6 +10,7 @@
     "pipeline": {
       "Type": "AWS::CodePipeline::Pipeline",
       "Properties": {
+        "Name" : "Project",
         "Stages": [
           {
             "Name": "Sources",
@@ -51,7 +52,7 @@
                 "ActionTypeId": {
                   "Category": "Build",
                   "Owner": "Custom",
-                  "Version": "4",
+                  "Version": "5",
                   "Provider": "project-jenkins"
                 },
                 "Configuration": {
@@ -67,13 +68,13 @@
                 "Name": "Test",
                 "InputArtifacts": [
                   {
-                    "Name": "sources"
+                    "Name": "build"
                   }
                 ],
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "4",
+                  "Version": "5",
                   "Provider": "project-jenkins"
                 },
                 "Configuration": {
@@ -85,19 +86,71 @@
                 "Name": "Analyse",
                 "InputArtifacts": [
                   {
-                    "Name": "sources"
+                    "Name": "build"
                   }
                 ],
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "4",
+                  "Version": "5",
                   "Provider": "project-jenkins"
                 },
                 "Configuration": {
                   "ProjectName": "analyse"
                 },
                 "RunOrder": 3
+              }
+            ]
+          },
+          {
+            "Name": "QA",
+            "Actions": [
+              {
+                "Name": "Package",
+                "InputArtifacts": [
+                  {
+                    "Name": "build"
+                  }
+                ],
+                "ActionTypeId": {
+                  "Category": "Test",
+                  "Owner": "Custom",
+                  "Version": "5",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "package"
+                }
+              },
+              {
+                "Name": "Deploy",
+                "ActionTypeId": {
+                  "Category": "Test",
+                  "Owner": "Custom",
+                  "Version": "5",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "deploy-to-qa"
+                },
+                "RunOrder": 2
+              }
+            ]
+          },
+          {
+            "Name": "Production",
+            "Actions": [
+              {
+                "Name": "Deploy",
+                "ActionTypeId": {
+                  "Category": "Test",
+                  "Owner": "Custom",
+                  "Version": "5",
+                  "Provider": "project-jenkins"
+                },
+                "Configuration": {
+                  "ProjectName": "deploy-to-production"
+                }
               }
             ]
           }

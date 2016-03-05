@@ -1,10 +1,10 @@
-def project = 'compile'
+def project = 'package'
 job("${project}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        maven('clean package -DskipTests')
+        shell(readFileFromWorkspace('seed', 'scripts/package.sh'))
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -13,7 +13,7 @@ job("${project}") {
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
-            actionTypeCategory 'Build'
+            actionTypeCategory 'Test'
             actionTypeProvider 'project-jenkins'
             actionTypeVersion '5'
             region 'us-east-1'
@@ -24,11 +24,7 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs {
-                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
-                    outputString ''
-                }
-            }
+            buildOutputs ''
             awsClientFactory ''
         }
     }

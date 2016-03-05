@@ -15,7 +15,7 @@ job("${project}") {
             projectName "${project}"
             actionTypeCategory 'Test'
             actionTypeProvider 'project-jenkins'
-            actionTypeVersion '4'
+            actionTypeVersion '5'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''

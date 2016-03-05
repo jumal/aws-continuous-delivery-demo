@@ -8,4 +8,4 @@ set +e
 aws --region us-east-1 cloudformation create-stack --stack-name project-pipeline-action-types --template-body file:///$DIRECTORY/action-types.json --parameters ParameterKey=buildServerURL,ParameterValue=$BUILD_SERVER_URL
 set -e
 
-aws --region us-east-1 cloudformation create-stack --stack-name project --template-body file:///$DIRECTORY/pipeline.json --capabilities CAPABILITY_IAM --parameters ParameterKey=gitHubToken,ParameterValue=$GITHUB_TOKEN
+aws --region us-east-1 cloudformation create-stack --stack-name project-pipeline --template-body file:///$DIRECTORY/pipeline.json --capabilities CAPABILITY_IAM --parameters ParameterKey=gitHubToken,ParameterValue=$GITHUB_TOKEN
