@@ -1,10 +1,10 @@
-def project = 'package'
+def project = 'project-compile'
 job("${project}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        shell(readFileFromWorkspace('seed', 'scripts/package.sh'))
+        maven('clean package -DskipTests')
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -14,8 +14,8 @@ job("${project}") {
             clearWorkspace 'true'
             projectName "${project}"
             actionTypeCategory 'Build'
-            actionTypeProvider 'project-jenkins'
-            actionTypeVersion '5'
+            actionTypeProvider 'Jenkins'
+            actionTypeVersion '2'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''

@@ -1,4 +1,4 @@
-def project = 'analyse'
+def project = 'project-analyse'
 job("${project}") {
     triggers {
         scm('* * * * *')
@@ -14,8 +14,8 @@ job("${project}") {
             clearWorkspace 'true'
             projectName "${project}"
             actionTypeCategory 'Test'
-            actionTypeProvider 'project-jenkins'
-            actionTypeVersion '5'
+            actionTypeProvider 'Jenkins'
+            actionTypeVersion '2'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''

@@ -1,10 +1,10 @@
-def project = 'compile'
+def project = 'project-test'
 job("${project}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        maven('clean package -DskipTests')
+        maven('test')
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -13,9 +13,9 @@ job("${project}") {
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
-            actionTypeCategory 'Build'
-            actionTypeProvider 'project-jenkins'
-            actionTypeVersion '5'
+            actionTypeCategory 'Test'
+            actionTypeProvider 'Jenkins'
+            actionTypeVersion '2'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''
@@ -24,11 +24,7 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs {
-                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
-                    outputString ''
-                }
-            }
+            buildOutputs ''
             awsClientFactory ''
         }
     }

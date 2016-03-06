@@ -7,19 +7,15 @@ RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 # Setup
 COPY setup.groovy /usr/share/jenkins/ref/init.groovy.d
 
+# Docker & AWS CLI
+USER root
+RUN apt-get update && apt-get install -y docker.io && groupadd -g 497 host-docker && usermod -a -G host-docker jenkins && \
+    apt-get install -y python-pip && rm -rf /var/lib/apt/lists/* && pip install awscli && \
+    curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && chmod +x /usr/local/bin/ecs-cli
+
 # Jobs
 COPY jobs /tmp/jobs
-USER root
 RUN chown -R jenkins:jenkins /tmp/jobs
-
-# Docker
-RUN apt-get update && apt-get install -y docker.io && groupadd -g 497 host-docker && usermod -a -G host-docker jenkins
-
-# AWS CLI
-RUN apt-get install -y python-pip && rm -rf /var/lib/apt/lists/* && pip install awscli
-
-# ECS CLI
-RUN curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && chmod +x /usr/local/bin/ecs-cli
 USER jenkins
 
 # HTTPS

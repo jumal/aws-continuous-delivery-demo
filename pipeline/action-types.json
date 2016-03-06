@@ -1,17 +1,16 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
-  "Parameters": {
-    "buildServerURL": {
-      "Type": "String"
-    }
-  },
   "Resources": {
     "customBuildActionType": {
       "Type": "AWS::CodePipeline::CustomActionType",
       "Properties": {
-        "Provider": "project-jenkins",
-        "Version":"5",
         "Category": "Build",
+        "Provider": "Jenkins",
+        "Version":"2",
+        "Settings": {
+          "EntityUrlTemplate": "{Config:ServerURL}/job/{Config:ProjectName}",
+          "ExecutionUrlTemplate": "{Config:ServerURL}/job/{Config:ProjectName}/{ExternalExecutionId}"
+        },
         "ConfigurationProperties": [
           {
             "Name": "ProjectName",
@@ -19,6 +18,12 @@
             "Required": "true",
             "Secret": "false",
             "Key": "true"
+          },
+          {
+            "Name": "ServerURL",
+            "Required": "true",
+            "Secret": "false",
+            "Key": "false"
           }
         ],
         "InputArtifactDetails": {
@@ -28,39 +33,19 @@
         "OutputArtifactDetails": {
           "MinimumCount": "0",
           "MaximumCount": "5"
-        },
-        "Settings": {
-          "EntityUrlTemplate": {
-            "Fn::Join": [
-              "",
-              [
-                {
-                  "Ref": "buildServerURL"
-                },
-                "/job/{Config:ProjectName}"
-              ]
-            ]
-          },
-          "ExecutionUrlTemplate": {
-            "Fn::Join": [
-              "",
-              [
-                {
-                  "Ref": "buildServerURL"
-                },
-                "/job/{Config:ProjectName}/{ExternalExecutionId}"
-              ]
-            ]
-          }
         }
       }
     },
     "customTestActionType": {
       "Type": "AWS::CodePipeline::CustomActionType",
       "Properties": {
-        "Provider": "project-jenkins",
-        "Version":"5",
         "Category": "Test",
+        "Provider": "Jenkins",
+        "Version":"2",
+        "Settings": {
+          "EntityUrlTemplate": "{Config:ServerURL}/job/{Config:ProjectName}",
+          "ExecutionUrlTemplate": "{Config:ServerURL}/job/{Config:ProjectName}/{ExternalExecutionId}"
+        },
         "ConfigurationProperties": [
           {
             "Name": "ProjectName",
@@ -68,6 +53,12 @@
             "Required": "true",
             "Secret": "false",
             "Key": "true"
+          },
+          {
+            "Name": "ServerURL",
+            "Required": "true",
+            "Secret": "false",
+            "Key": "false"
           }
         ],
         "InputArtifactDetails": {
@@ -77,30 +68,6 @@
         "OutputArtifactDetails": {
           "MinimumCount": "0",
           "MaximumCount": "5"
-        },
-        "Settings": {
-          "EntityUrlTemplate": {
-            "Fn::Join": [
-              "",
-              [
-                {
-                  "Ref": "buildServerURL"
-                },
-                "/job/{Config:ProjectName}"
-              ]
-            ]
-          },
-          "ExecutionUrlTemplate": {
-            "Fn::Join": [
-              "",
-              [
-                {
-                  "Ref": "buildServerURL"
-                },
-                "/job/{Config:ProjectName}/{ExternalExecutionId}"
-              ]
-            ]
-          }
         }
       }
     }

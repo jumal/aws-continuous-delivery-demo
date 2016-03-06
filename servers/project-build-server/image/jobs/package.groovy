@@ -1,10 +1,10 @@
-def project = 'test'
+def project = 'project-package'
 job("${project}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        maven('test')
+        shell(readFileFromWorkspace('seed', 'scripts/package.sh'))
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -13,9 +13,9 @@ job("${project}") {
         it / scm << {
             clearWorkspace 'true'
             projectName "${project}"
-            actionTypeCategory 'Test'
-            actionTypeProvider 'project-jenkins'
-            actionTypeVersion '5'
+            actionTypeCategory 'Build'
+            actionTypeProvider 'Jenkins'
+            actionTypeVersion '2'
             region 'us-east-1'
             awsAccessKey ''
             awsSecretKey ''
@@ -24,7 +24,11 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs ''
+            buildOutputs {
+                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
+                    outputString ''
+                }
+            }
             awsClientFactory ''
         }
     }

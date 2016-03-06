@@ -4,6 +4,9 @@
     "gitHubToken": {
       "Type": "String",
       "NoEcho": "true"
+    },
+    "buildServerURL": {
+      "Type": "String"
     }
   },
   "Resources": {
@@ -20,8 +23,8 @@
                 "ActionTypeId": {
                   "Category": "Source",
                   "Owner": "ThirdParty",
-                  "Version": "1",
-                  "Provider": "GitHub"
+                  "Provider": "GitHub",
+                  "Version": "1"
                 },
                 "Configuration": {
                   "Owner": "jumal",
@@ -52,11 +55,14 @@
                 "ActionTypeId": {
                   "Category": "Build",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "compile"
+                  "ProjectName": "project-compile",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 },
                 "OutputArtifacts": [
                   {
@@ -74,11 +80,14 @@
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "test"
+                  "ProjectName": "project-test",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 },
                 "RunOrder": 2
               },
@@ -92,11 +101,14 @@
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "analyse"
+                  "ProjectName": "project-analyse",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 },
                 "RunOrder": 3
               }
@@ -115,11 +127,14 @@
                 "ActionTypeId": {
                   "Category": "Build",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "package"
+                  "ProjectName": "project-package",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 },
                 "OutputArtifacts": [
                   {
@@ -137,11 +152,14 @@
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "deploy-to-qa"
+                  "ProjectName": "project-deploy-qa",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 },
                 "RunOrder": 2
               }
@@ -160,11 +178,14 @@
                 "ActionTypeId": {
                   "Category": "Test",
                   "Owner": "Custom",
-                  "Version": "5",
-                  "Provider": "project-jenkins"
+                  "Provider": "Jenkins",
+                  "Version": "2"
                 },
                 "Configuration": {
-                  "ProjectName": "deploy-to-production"
+                  "ProjectName": "project-deploy-prod",
+                  "ServerURL": {
+                    "Ref": "buildServerURL"
+                  }
                 }
               }
             ]
@@ -173,7 +194,7 @@
         "DisableInboundStageTransitions" : [
           {
             "StageName": "Production",
-            "Reason": "Manual transition to production"
+            "Reason": "Manual transition"
           }
         ],
         "ArtifactStore": {
