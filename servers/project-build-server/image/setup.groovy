@@ -12,6 +12,9 @@ instance.setSecurityRealm(realm)
 def strategy = new GlobalMatrixAuthorizationStrategy()
 strategy.add(Jenkins.ADMINISTER, username)
 instance.setAuthorizationStrategy(strategy)
+
+// Set executors number
+instance.setNumExecutors(1)
 instance.save()
 
 // Create seed project
