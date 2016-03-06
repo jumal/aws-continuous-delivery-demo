@@ -172,10 +172,8 @@
         ],
         "DisableInboundStageTransitions" : [
           {
-            "pipelineName": "Project",
-            "stageName": "Production",
-            "transitionType": "Inbound",
-            "reason": "Manual transition to production"
+            "StageName": "Production",
+            "Reason": "Manual transition to production"
           }
         ],
         "ArtifactStore": {
