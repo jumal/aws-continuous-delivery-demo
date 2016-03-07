@@ -7,4 +7,4 @@ docker build -t project .
 docker tag project:$TAG $REGISTRY/project:$TAG
 $LOGIN
 docker push $REGISTRY/project:$TAG
-sed -i '' -e "s/REGISTRY/$REGISTRY/g" -e "s/TAG/$TAG/g" docker-compose.yml
+sed -i -e "s/REGISTRY/$REGISTRY/g" -e "s/TAG/$TAG/g" docker-compose.yml
