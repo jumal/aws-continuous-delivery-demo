@@ -3,7 +3,7 @@ TAG=latest
 LOGIN=$(aws --region us-east-1 ecr get-login)
 REGISTRY=$(echo $LOGIN | awk '{print $9}' | sed 's/^https:\/\///g')
 
-docker build -t project .
+docker build -t project:$TAG .
 docker tag project:$TAG $REGISTRY/project:$TAG
 $LOGIN
 docker push $REGISTRY/project:$TAG
