@@ -2,9 +2,9 @@ FROM jenkins
 
 # Docker & AWS CLI
 USER root
-RUN groupadd -g 497 host-docker && usermod -a -G host-docker jenkins && \
-    apt-get update && apt-get install -y python-pip && rm -rf /var/lib/apt/lists/* && pip install awscli && \
-    curl -so /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && chmod +x /usr/local/bin/ecs-cli
+RUN apt-get update && apt-get install -y docker.io && groupadd -g 497 host-docker && usermod -a -G host-docker jenkins && \
+    apt-get install -y python-pip && rm -rf /var/lib/apt/lists/* && pip install awscli && \
+    curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest && chmod +x /usr/local/bin/ecs-cli
 
 # Plugins
 COPY plugins.txt /usr/share/jenkins/ref
