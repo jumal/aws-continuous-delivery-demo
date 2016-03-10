@@ -5,13 +5,14 @@ Continuous delivery demo using Amazon Web Services
 
 This demo uses:
  - **AWS CodePipeline** for orchestration
- - **Docker** for immutable infrastructure support
+ - **Docker** for container support
  - **Jenkins** for continuous integration
+ - **SonarQube** for static code analysis
  - **AWS CloudFormation** for provisioning
  - **AWS ECS** for Docker support
 
 Sample pipeline:
- - Automatically **build** on commit and **run unit tests**
+ - Automatically **build** on commit, **run unit tests** and perform **static code analysis**
  - Automatically **deploy to QA environment**
  - Allow to **deploy to production environment**
 
@@ -54,7 +55,7 @@ To install Docker, follow the instructions for your OS on [this page](https://do
 
 ## Usage
 
-To access AWS CodePipeline, point your browser to *Work in progress*
+To access AWS CodePipeline, point your browser to [https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project](https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project)
 
 ## Cleanup
 ```
