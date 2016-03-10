@@ -1,5 +1,5 @@
-def project = 'project-test'
-job("${project}") {
+def name = 'project-test'
+job("${name}") {
     triggers {
         scm('* * * * *')
     }
@@ -12,7 +12,7 @@ job("${project}") {
         (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
-            projectName "${project}"
+            projectName "${name}"
             actionTypeCategory 'Test'
             actionTypeProvider 'Jenkins'
             actionTypeVersion '2'
@@ -24,7 +24,11 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs ''
+            buildOutputs {
+                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
+                    outputString ''
+                }
+            }
             awsClientFactory ''
         }
     }

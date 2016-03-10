@@ -1,9 +1,29 @@
-web:
-  image: REGISTRY/project-build-server:TAG
-  mem_limit: 1073741824
+jenkins:
+  build: jenkins
+  links:
+   - sonarqube
+  ports:
+    - "80:8080"
+  volumes:
+    - /usr/bin/docker:/usr/bin/docker
+    - /var/run/docker.sock:/var/run/docker.sock
   environment:
     - JAVA_OPTS=-Xmx768m
+  mem_limit: 1073741824
+sonarqube:
+  build: sonarqube
+  links:
+   - sonarqube-database
   ports:
-   - "80:8080"
-  volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+    - "9000:9000"
+  environment:
+    - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-database/sonar
+    - WEB_JAVA_OPTS=-Xmx256m
+    - SEARCH_JAVA_OPTS=-Xmx117m
+  mem_limit: 536870912
+sonarqube-database:
+  image: postgres
+  environment:
+    - POSTGRES_USER=sonar
+    - POSTGRES_PASSWORD=sonar
+  mem_limit: 268435456

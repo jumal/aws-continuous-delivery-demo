@@ -1,5 +1,5 @@
-def project = 'project-package'
-job("${project}") {
+def name = 'project-package'
+job("${name}") {
     triggers {
         scm('* * * * *')
     }
@@ -12,7 +12,7 @@ job("${project}") {
         (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
-            projectName "${project}"
+            projectName "${name}"
             actionTypeCategory 'Build'
             actionTypeProvider 'Jenkins'
             actionTypeVersion '2'

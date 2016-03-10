@@ -1,10 +1,10 @@
-def project = 'project-analyse'
-job("${project}") {
+def name = 'project-analyse'
+job("${name}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        maven('test')
+        maven('$SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL')
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -12,7 +12,7 @@ job("${project}") {
         (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
-            projectName "${project}"
+            projectName "${name}"
             actionTypeCategory 'Test'
             actionTypeProvider 'Jenkins'
             actionTypeVersion '2'
@@ -26,6 +26,8 @@ job("${project}") {
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
             buildOutputs ''
             awsClientFactory ''
+        }
+        it / buildWrappers << 'hudson.plugins.sonar.SonarBuildWrapper' {
         }
     }
 }

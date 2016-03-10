@@ -1,10 +1,10 @@
-def project = 'project-compile'
-job("${project}") {
+def name = 'project-deploy-qa'
+job("${name}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        maven('clean package -DskipTests')
+        shell(readFileFromWorkspace('seed', 'scripts/deploy-qa.sh'))
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -12,8 +12,8 @@ job("${project}") {
         (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
-            projectName "${project}"
-            actionTypeCategory 'Build'
+            projectName "${name}"
+            actionTypeCategory 'Test'
             actionTypeProvider 'Jenkins'
             actionTypeVersion '2'
             region 'us-east-1'
@@ -24,11 +24,7 @@ job("${project}") {
             awsClientFactory ''
         }
         it / publishers << 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher' {
-            buildOutputs {
-                'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelinePublisher_-OutputTuple' {
-                    outputString ''
-                }
-            }
+            buildOutputs ''
             awsClientFactory ''
         }
     }

@@ -66,7 +66,7 @@
                 },
                 "OutputArtifacts": [
                   {
-                    "Name": "build"
+                    "Name": "compiled"
                   }
                 ]
               },
@@ -74,7 +74,7 @@
                 "Name": "Test",
                 "InputArtifacts": [
                   {
-                    "Name": "build"
+                    "Name": "compiled"
                   }
                 ],
                 "ActionTypeId": {
@@ -89,13 +89,18 @@
                     "Ref": "buildServerURL"
                   }
                 },
+                "OutputArtifacts": [
+                  {
+                    "Name": "tested"
+                  }
+                ],
                 "RunOrder": 2
               },
               {
                 "Name": "Analyse",
                 "InputArtifacts": [
                   {
-                    "Name": "build"
+                    "Name": "tested"
                   }
                 ],
                 "ActionTypeId": {
@@ -121,7 +126,7 @@
                 "Name": "Package",
                 "InputArtifacts": [
                   {
-                    "Name": "build"
+                    "Name": "compiled"
                   }
                 ],
                 "ActionTypeId": {
@@ -138,7 +143,7 @@
                 },
                 "OutputArtifacts": [
                   {
-                    "Name": "package"
+                    "Name": "packaged"
                   }
                 ]
               },
@@ -146,7 +151,7 @@
                 "Name": "Deploy",
                 "InputArtifacts": [
                   {
-                    "Name": "package"
+                    "Name": "packaged"
                   }
                 ],
                 "ActionTypeId": {
@@ -172,7 +177,7 @@
                 "Name": "Deploy",
                 "InputArtifacts": [
                   {
-                    "Name": "package"
+                    "Name": "packaged"
                   }
                 ],
                 "ActionTypeId": {

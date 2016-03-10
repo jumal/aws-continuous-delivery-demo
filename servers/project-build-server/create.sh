@@ -3,7 +3,8 @@ DIRECTORY=$(cd ${0%/*} && echo $PWD)
 LIB=$DIRECTORY/../../lib
 CLUSTER=$(basename $DIRECTORY)
 
-$DIRECTORY/image/create.sh
+$DIRECTORY/jenkins/create.sh
+$DIRECTORY/sonarqube/create.sh
 
 $LIB/create-key-pair.sh $CLUSTER
 ecs-cli configure --region $(aws configure get region) --cluster $CLUSTER

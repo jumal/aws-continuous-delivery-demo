@@ -1,10 +1,10 @@
-def project = 'project-deploy-qa'
-job("${project}") {
+def name = 'project-deploy-prod'
+job("${name}") {
     triggers {
         scm('* * * * *')
     }
     steps {
-        shell(readFileFromWorkspace('seed', 'scripts/deploy-qa.sh'))
+        shell(readFileFromWorkspace('seed', 'scripts/deploy-prod.sh'))
     }
     logRotator(-1, 5)
     concurrentBuild()
@@ -12,7 +12,7 @@ job("${project}") {
         (it / scm).@class = 'com.amazonaws.codepipeline.jenkinsplugin.AWSCodePipelineSCM'
         it / scm << {
             clearWorkspace 'true'
-            projectName "${project}"
+            projectName "${name}"
             actionTypeCategory 'Test'
             actionTypeProvider 'Jenkins'
             actionTypeVersion '2'
