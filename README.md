@@ -55,7 +55,8 @@ To install Docker, follow the instructions for your OS on [this page](https://do
 
 ## Usage
 
-To access AWS CodePipeline, point your browser to
+To access the created continuous delivery pipeline, point your browser to 
+
 [https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project](https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project)
 
 ## Cleanup
