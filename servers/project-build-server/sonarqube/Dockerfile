@@ -1,7 +1,8 @@
 FROM sonarqube
 
 # JAVA_OPTS
-ENV JAVA_OPTS -Xmx768m
+ENV WEB_JAVA_OPTS -Xmx768m
+ENV SEARCH_JAVA_OPTS -Xmx1g
 RUN sed -i 's|console=true|console=true -Dsonar.web.javaOpts="$WEB_JAVA_OPTS" -Dsonar.search.javaOpts="$SEARCH_JAVA_OPTS"|g' $SONARQUBE_HOME/bin/run.sh
 
 # Plugins
