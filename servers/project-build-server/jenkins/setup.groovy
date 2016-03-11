@@ -27,6 +27,7 @@ new AntBuilder().copy(todir:'/var/jenkins_home/workspace/seed') {
     fileset(dir:source.getPath())
 }
 source.deleteDir()
+for (File script : new File('/var/jenkins_home/workspace/seed/scripts').listFiles()) script.setExecutable(true)
 
 // Install maven
 def mavenPluginExtension = Jenkins.instance.getExtensionList(hudson.tasks.Maven.DescriptorImpl.class)[0]
