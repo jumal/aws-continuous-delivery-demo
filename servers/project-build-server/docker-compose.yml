@@ -7,8 +7,8 @@ jenkins:
   volumes:
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
-    - JAVA_OPTS=-Xmx768m
-  mem_limit: 1073741824
+    - JAVA_OPTS=-Xmx1536m
+  mem_limit: 2147483648
 sonarqube:
   build: sonarqube
   links:
@@ -17,9 +17,9 @@ sonarqube:
     - "9000:9000"
   environment:
     - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-database/sonar
-    - WEB_JAVA_OPTS=-Xmx256m
-    - SEARCH_JAVA_OPTS=-Xmx117m
-  mem_limit: 536870912
+    - WEB_JAVA_OPTS=-Xms384m -Xmx384m
+    - SEARCH_JAVA_OPTS=-Xms384m -Xmx384m
+  mem_limit: 1610612736
 sonarqube-database:
   image: postgres
   environment:
