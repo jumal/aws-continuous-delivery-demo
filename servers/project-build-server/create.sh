@@ -13,5 +13,6 @@ ROLE=$($LIB/get-role.sh $CLUSTER)
 aws iam attach-role-policy --role-name $ROLE --policy-arn arn:aws:iam::aws:policy/AWSCodePipelineCustomActionAccess
 aws iam attach-role-policy --role-name $ROLE --policy-arn arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPowerUser
 ecs-cli compose --file $DIRECTORY/docker-compose.yml service up
+$LIB/open-port.sh $CLUSTER 9000
 
 
