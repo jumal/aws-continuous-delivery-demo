@@ -10,7 +10,7 @@ RUN echo -n '\nsonar.forceAuthentication=true' >> $SONARQUBE_HOME/conf/sonar.pro
 
 # Password
 ENV ADMIN_PASSWORD admin
-RUN ENCRYPTED=$(echo -n "--48bc4b0d93179b5103fd3885ea9119498e9d161b--$ADMIN_PASSWORD--" | openssl sha1 | awk '{print $NF}') && sed -i "s/a373a0e667abb2604c1fd571eb4ad47fe8cc0878/$ENCRYPTED/g" $SONARQUBE_HOME/web/WEB-INF/db/migrate/011_create_administrator.rb
+RUN sed -i 's|set -e|set -e \&\& ENCRYPTED=$(echo -n "--48bc4b0d93179b5103fd3885ea9119498e9d161b--$ADMIN_PASSWORD--" \| openssl sha1 \| awk '"'"'{print $NF}'"'"') \&\& sed -i "s/a373a0e667abb2604c1fd571eb4ad47fe8cc0878/$ENCRYPTED/g" $SONARQUBE_HOME/web/WEB-INF/db/migrate/011_create_administrator.rb|g' $SONARQUBE_HOME/bin/run.sh
 
 # Plugins
 #RUN curl -so $SONARQUBE_HOME/extensions/plugins/sonar-java-plugin-3.11.jar \
