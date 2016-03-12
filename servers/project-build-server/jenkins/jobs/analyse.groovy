@@ -4,7 +4,7 @@ job("${name}") {
         scm('* * * * *')
     }
     steps {
-        maven('$SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL')
+        maven('$SONAR_MAVEN_GOAL -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_LOGIN -Dsonar.password=$SONAR_PASSWORD')
     }
     logRotator(-1, 5)
     concurrentBuild()

@@ -9,7 +9,8 @@ def instance = Jenkins.getInstance()
 // Create user
 def username = 'admin'
 def realm = new HudsonPrivateSecurityRealm(false)
-realm.createAccount(username, System.getenv()['ADMIN_PASSWORD'])
+def env = System.getenv()
+realm.createAccount(username, env['ADMIN_PASSWORD'])
 instance.setSecurityRealm(realm)
 def strategy = new GlobalMatrixAuthorizationStrategy()
 strategy.add(Jenkins.ADMINISTER, username)
@@ -37,7 +38,7 @@ mavenPluginExtension.save()
 
 // Install sonarqube
 def sonarPluginDescriptor = instance.getDescriptor("hudson.plugins.sonar.SonarPublisher")
-def sonarInstallation = new SonarInstallation("sonarqube", false, "http://sonarqube:9000", "", "", "", "", "", new TriggersConfig(), "", "", "")
+def sonarInstallation = new SonarInstallation("sonarqube", false, "http://sonarqube:9000", "", "", "", "", "", new TriggersConfig(), "admin", env['SONARQUBE_ENV_ADMIN_PASSWORD'], "")
 sonarPluginDescriptor.setInstallations(sonarInstallation)
 sonarPluginDescriptor.setBuildWrapperEnabled(true)
 sonarPluginDescriptor.save()
