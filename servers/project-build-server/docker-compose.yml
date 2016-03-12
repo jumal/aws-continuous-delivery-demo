@@ -8,6 +8,7 @@ jenkins:
     - /var/run/docker.sock:/var/run/docker.sock
   environment:
     - JAVA_OPTS=-Xmx1536m
+    - ADMIN_PASSWORD=secret
   mem_limit: 2147483648
 sonarqube:
   build: sonarqube
@@ -17,8 +18,9 @@ sonarqube:
     - "9000:9000"
   environment:
     - SONARQUBE_JDBC_URL=jdbc:postgresql://sonarqube-database/sonar
-    - WEB_JAVA_OPTS=-Xms384m -Xmx384m
-    - SEARCH_JAVA_OPTS=-Xms384m -Xmx384m
+    - WEB_JAVA_OPTS=-Xmx384m
+    - SEARCH_JAVA_OPTS=-Xmx384m
+    - ADMIN_PASSWORD=secret
   mem_limit: 1610612736
 sonarqube-database:
   image: postgres
