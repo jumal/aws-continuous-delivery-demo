@@ -9,7 +9,7 @@ This demo uses:
  - **Jenkins** for continuous integration
  - **SonarQube** for static code analysis
  - **AWS CloudFormation** for provisioning
- - **AWS ECS** for EC2 Docker and docker compose support
+ - **AWS ECS** for EC2 Docker and Docker Compose support
 
 Sample pipeline:
  - Automatically **build** on commit, **run unit tests** and perform **static code analysis**
