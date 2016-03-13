@@ -18,7 +18,9 @@ Sample pipeline:
 
 ![Continuous Delivery Pipeline](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg)
 
-<img src="https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg"/>
+<p align="center">
+ <img src="https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg" width="1053" height="1791"/>
+</p>
 
 Sample application:
 [aws-continuous-delivery-demo-app](https://github.com/jumal/aws-continuous-delivery-demo-app).
