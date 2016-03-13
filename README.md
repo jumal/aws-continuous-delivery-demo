@@ -36,7 +36,7 @@ This will create:
  - ECS **clusters** for the **QA and production** environments
  - The CodePipeline **continuous delivery pipeline**
 
-## Prereqisites
+## Prerequisites
 
 The setup is performed using Amazon command line tools to ensure full reproducibility.
 
