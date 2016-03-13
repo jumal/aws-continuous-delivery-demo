@@ -13,8 +13,10 @@ This demo uses:
 
 Sample pipeline:
  - Automatically **build** on commit, **run unit tests** and perform **static code analysis**
- - Automatically **deploy to QA environment**
- - Allow to **deploy to production environment**
+ - Automatically build and **push a docker image** and **deploy to QA environment**
+ - Allow **deployment to production environment**
+
+![Continuous Delivery Pipeline](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg)
 
 ## Setup
 
