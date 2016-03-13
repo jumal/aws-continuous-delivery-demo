@@ -51,9 +51,24 @@ sudo chmod +x /usr/local/bin/ecs-cli
 To install Docker, follow the instructions for your OS on [this page](https://docs.docker.com/engine/installation).
 
 ### Continuous Delivery Pipeline & Servers
+To create the continuous delivery pipeline and servers:
 ```
 ./create.sh
 ```
+This will create:
+ - The AWS ECR **Docker repositories** for the project, Jenkins and Sonarqube
+ - An AWS ECS service for the **Build Server**
+ - A **Jenkins Docker image**
+  - Using **authentication**
+  - Having all the required **plugins and tools setup**
+  - Having the **Jobs created automatically** 
+ - A **SonarQube Docker image**
+  - Using **authentication**
+  - Having all the required **plugins setup**
+ - AWS ECS **Clusters** for the **QA and Production** environments
+ - The AWS CodePipeline **continuous delivery pipeline**
+
+![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
 
 ## Usage
 
