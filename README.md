@@ -36,11 +36,7 @@ This will create:
  - ECS **clusters** for the **QA and production** environments
  - The CodePipeline **continuous delivery pipeline**
 
-__*Build server running on ECS*__
-__Build server running on ECS__
 *Build server running on ECS*
-
-
 ![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
 
 ## Prereqisites
