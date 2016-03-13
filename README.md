@@ -1,7 +1,7 @@
 # AWS Continuous Delivery Demo
 [![License](https://img.shields.io/badge/license-Apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
-Continuous delivery demo using Amazon Web Services
+Continuous Delivery demo using Amazon Web Services
 
 This demo uses:
  - **Amazon CodePipeline** for orchestration
