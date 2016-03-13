@@ -57,15 +57,15 @@ To create the continuous delivery pipeline and servers:
 ```
 This will create:
  - The AWS ECR **Docker repositories** for the project, Jenkins and Sonarqube
- - An AWS ECS service for the **Build Server**
+ - An AWS ECS service for the **build server**
  - A **Jenkins Docker image**
-  - Using **authentication**
-  - Having all the required **plugins and tools setup**
-  - Having the **Jobs created automatically** 
+  - Using authentication
+  - Having all the required plugins and tools setup
+  - Having the Jobs created automatically
  - A **SonarQube Docker image**
-  - Using **authentication**
-  - Having all the required **plugins setup**
- - AWS ECS **Clusters** for the **QA and Production** environments
+  - Using authentication
+  - Having all the required plugins setup
+ - AWS ECS **clusters** for the **QA and production** environments
  - The AWS CodePipeline **continuous delivery pipeline**
 
 ![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
@@ -77,6 +77,8 @@ To access the created continuous delivery pipeline, point your browser to
 [https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project](https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project)
 
 ## Cleanup
+
+To delete all the AWS resources created by this demo:
 ```
 ./delete.sh
 ```
