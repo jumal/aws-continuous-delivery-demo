@@ -4,12 +4,12 @@
 Continuous delivery demo using Amazon Web Services
 
 This demo uses:
- - **AWS CodePipeline** for orchestration
+ - **Amazon CodePipeline** for orchestration
  - **Docker** for container support
  - **Jenkins** for continuous integration
  - **SonarQube** for static code analysis
- - **AWS CloudFormation** for provisioning
- - **AWS ECS** for EC2 Docker and Docker Compose support
+ - **Amazon CloudFormation** for provisioning
+ - **Amazon ECS & ECR** for EC2 Docker and registries support
 
 Sample pipeline:
  - Automatically **build** on commit, **run unit tests** and perform **static code analysis**
@@ -18,7 +18,29 @@ Sample pipeline:
 
 ![Continuous Delivery Pipeline](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg)
 
-## Setup
+## Usage
+To create the continuous delivery pipeline and servers:
+```
+./create.sh
+```
+This will create:
+ - The ECR **Docker repositories** for the project, Jenkins and Sonarqube
+ - An ECS service for the **build server**
+ - A **Jenkins Docker image**
+  - Using authentication
+  - Having all the required plugins and tools setup
+  - Having the Jobs created automatically
+ - A **SonarQube Docker image**
+  - Using authentication
+  - Having all the required plugins setup
+ - ECS **clusters** for the **QA and production** environments
+ - The CodePipeline **continuous delivery pipeline**
+
+__*Build server running on ECS*__
+
+![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
+
+## Prereqisites
 
 The setup is performed using Amazon command line tools and CloudFormation to ensure full reproducibility.
 
@@ -49,34 +71,6 @@ sudo chmod +x /usr/local/bin/ecs-cli
 ```
 ### Docker
 To install Docker, follow the instructions for your OS on [this page](https://docs.docker.com/engine/installation).
-
-### Continuous Delivery Pipeline & Servers
-To create the continuous delivery pipeline and servers:
-```
-./create.sh
-```
-This will create:
- - The AWS ECR **Docker repositories** for the project, Jenkins and Sonarqube
- - An AWS ECS service for the **build server**
- - A **Jenkins Docker image**
-  - Using authentication
-  - Having all the required plugins and tools setup
-  - Having the Jobs created automatically
- - A **SonarQube Docker image**
-  - Using authentication
-  - Having all the required plugins setup
- - AWS ECS **clusters** for the **QA and production** environments
- - The AWS CodePipeline **continuous delivery pipeline**
-
-
-
-![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
-
-## Usage
-
-To access the created continuous delivery pipeline, point your browser to 
-
-[https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project](https://console.aws.amazon.com/codepipeline/home?region=us-east-1#/view/Project)
 
 ## Cleanup
 
