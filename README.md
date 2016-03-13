@@ -16,10 +16,10 @@ Sample pipeline:
  - Automatically **build and push a docker image** and **deploy to a QA environment**
  - Allow **deployment to the production environment**
 
+![Continuous Delivery Pipeline](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg)
+
 Sample application:
 [aws-continuous-delivery-demo-app](https://github.com/jumal/aws-continuous-delivery-demo-app).
-
-![Continuous Delivery Pipeline](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/pipeline.jpg)
 
 ## Usage
 To create the continuous delivery pipeline and servers:
