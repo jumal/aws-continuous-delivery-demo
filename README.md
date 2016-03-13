@@ -36,12 +36,9 @@ This will create:
  - ECS **clusters** for the **QA and production** environments
  - The CodePipeline **continuous delivery pipeline**
 
-*Build server running on ECS*
-![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
-
 ## Prereqisites
 
-The setup is performed using Amazon command line tools and CloudFormation to ensure full reproducibility.
+The setup is performed using Amazon command line tools to ensure full reproducibility.
 
 ### Amazon Command Line Tools
 
