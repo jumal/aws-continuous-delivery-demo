@@ -2,7 +2,7 @@ FROM sonarqube
 
 # Memory
 ENV WEB_JAVA_OPTS="-Xmx768m -Xms256m -XX:MaxPermSize=160m -XX:+HeapDumpOnOutOfMemoryError -Djava.net.preferIPv4Stack=true" \
-    SEARCH_JAVA_OPTS="Xmx1G -Xms256m -Xss256k -Djava.net.preferIPv4Stack=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError"
+    SEARCH_JAVA_OPTS="-Xmx1G -Xms256m -Xss256k -Djava.net.preferIPv4Stack=true -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=75 -XX:+UseCMSInitiatingOccupancyOnly -XX:+HeapDumpOnOutOfMemoryError"
 RUN sed -i 's|console=true|console=true -Dsonar.web.javaOpts="$WEB_JAVA_OPTS" -Dsonar.search.javaOpts="$SEARCH_JAVA_OPTS"|g' $SONARQUBE_HOME/bin/run.sh
 
 # Authentication
