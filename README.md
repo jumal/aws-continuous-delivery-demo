@@ -9,7 +9,7 @@ This demo uses:
  - **Jenkins** for continuous integration
  - **SonarQube** for static code analysis
  - **Amazon CloudFormation** for provisioning
- - **Amazon ECS & ECR** for EC2 Docker and registries support
+ - **Amazon ECS & ECR** for EC2 Docker support
 
 Sample pipeline:
  - Automatically **build** on commit, **run unit tests** and perform **static code analysis**
@@ -30,12 +30,12 @@ This will create:
  - The ECR **Docker repositories** for the project, Jenkins and Sonarqube
  - An ECS service for the **build server**
  - A **Jenkins Docker image**
-  - Using authentication
-  - Having all the required plugins and tools setup
   - Having the Jobs created automatically
- - A **SonarQube Docker image**
+  - Having all the required plugins and tools setup
   - Using authentication
+ - A **SonarQube Docker image**
   - Having all the required plugins setup
+  - Using authentication
  - ECS **clusters** for the **QA and production** environments
  - The CodePipeline **continuous delivery pipeline**
 
