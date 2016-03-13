@@ -35,7 +35,7 @@ This will create:
   - Having all the required plugins setup
  - ECS **clusters** for the **QA and production** environments
  - The CodePipeline **continuous delivery pipeline**
-
+##
 *Build server running on ECS*
 ![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
 
