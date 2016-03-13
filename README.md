@@ -69,6 +69,7 @@ This will create:
  - The AWS CodePipeline **continuous delivery pipeline**
 
 
+
 ![AWS ECS](https://raw.githubusercontent.com/jumal/aws-continuous-delivery-demo/master/doc/ecs.jpg)
 
 ## Usage
