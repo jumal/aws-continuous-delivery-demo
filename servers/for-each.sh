@@ -5,6 +5,6 @@ if [ "$#" -ne 1 ]; then
 fi
 DIRECTORY=$(cd ${0%/*} && echo $PWD)
 
-for server in $DIRECTORY/*/; do
-    $server$1.sh
+for server in ${DIRECTORY}/*/; do
+    ${server}$1.sh
 done
